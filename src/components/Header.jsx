@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {  Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
 import { FaShoppingCart, FaUser} from 'react-icons/fa';
 // import logo from '../asset/logo.png'
@@ -10,7 +11,9 @@ const Header = () => {
               <Container>
                   <Navbar.Brand>
                       {/* <img src={''} className='logo' alt='goshopnow' /> */}
+                      <Link to='/' className='link'>
                       GoShopNow
+                      </Link>
                       </Navbar.Brand>
                   <Navbar.Toggle aria-controls='basix-navbar-nav' />
                   <Navbar.Collapse id='basic-navbar-nav'>
@@ -26,7 +29,8 @@ const Header = () => {
                                   </NavDropdown.Item>
                               </NavDropdown>
                               <Nav.Link>
-                                  <FaUser/> Sign In
+                                <Link to='/login' className='link'>
+                                  <FaUser/> Sign In </Link>
                               </Nav.Link>
                       </Nav>
                   </Navbar.Collapse>

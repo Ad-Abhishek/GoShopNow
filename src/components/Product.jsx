@@ -3,18 +3,16 @@ import axios from "axios";
 import CardList from "./CardList";
 
 export const Product = () => {
-  const serverUrl = "https://jsonplaceholder.typicode.com/users"
-  
-  
+  const serverUrl = "https://goshopnow.onrender.com/api/product/product/"
+
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
     axios
       .get(serverUrl) 
       .then((res) => {
-        // console.log(res.data);
         setProduct(() => {
-          return res.data;
+          return res.data.results;
         });
       }) 
       .catch((err) => {

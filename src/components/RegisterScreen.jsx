@@ -1,9 +1,9 @@
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import FormContainer from '../components/FormContainer';
 
 const RegisterScreen = () => {
   
-
     return (
         <FormContainer>
             <h1>Sign Up</h1>
@@ -62,7 +62,7 @@ const RegisterScreen = () => {
             <Row className='py-3'>
                 <Col>
                     Already have an account? 
-                       <a href='/'> Login </a>
+                       <Link to='/login' className='login-link'> Login </Link>
                 </Col>
             </Row>
         </FormContainer>

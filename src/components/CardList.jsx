@@ -9,7 +9,7 @@ const CardList = ({ product }) => {
       <Row>
       {product.map(item => (
         <Col sm={12} md={6} lg={5} xl={3}>
-          <ProductCard key={item.id} name={item.name} email={item.email} website={item.website} zip={item.address.zipcode}/>
+          <ProductCard key={item.id} item={item}/>
         </Col>
       ))}
       </Row>
