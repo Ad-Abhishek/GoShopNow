@@ -1,0 +1,17 @@
+.link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: rgb(17, 113, 151);
+}
+
+.login-link, .reg-link {
+    text-decoration: none;
+}
+
+.product-link {
+    text-decoration: none;
+    color: black;
+}
