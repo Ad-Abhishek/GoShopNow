@@ -19,7 +19,9 @@ const Header = () => {
                   <Navbar.Collapse id='basic-navbar-nav'>
                       <Nav className='ms-auto'>
                               <Nav.Link>
+                                <Link to='/cart' className='link'>
                                   <FaShoppingCart /> Cart 
+                                </Link>  
                               </Nav.Link>  
                               
                               <NavDropdown title='' id='username'>
