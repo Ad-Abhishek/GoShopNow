@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
     Form,
     Row,
@@ -17,7 +17,11 @@ const ProductScreen = () => {
     const { id: productId } = useParams();
     const product = products.find((p) => (p.p_id).toString() === productId);
 
+    const navigate = useNavigate();
 
+    const addToCartHandler = () => {
+        navigate('/cart');
+    }
   return (
     <>
             <Link className='btn btn-light my-3' to='/'>
@@ -88,7 +92,7 @@ const ProductScreen = () => {
                                     className="btn-block"
                                     type="button"
                                     // disabled={product.countInStock === 0}
-                                    // onClick={addToCartHandler}
+                                    onClick={addToCartHandler}
                                 >
                                     Add To Cart
                                 </Button>    
