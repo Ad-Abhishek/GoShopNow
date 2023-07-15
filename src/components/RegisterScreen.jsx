@@ -1,21 +1,56 @@
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 import FormContainer from '../components/FormContainer';
+import { toast } from 'react-hot-toast';
 
 const RegisterScreen = () => {
-  
+  const navigate = useNavigate();
+
+  const [data, setData] = useState({
+    first_name : "",
+    last_name : "",
+    email: "",
+    password: "",
+    phone: ""
+  });
+
+  const registerUser = async (e) => {
+    e.preventDefault();
+    const { first_name, last_name, email, password, phone } = data;
+
+    try {
+        const { data } = await axios.post('https://goshopnow.onrender.com/api/user/create/', {
+            first_name,
+            last_name,
+            email,
+            password,
+            phone
+        })
+    if (data.error) {
+        toast.error("Error! Try again")
+    } else {
+        setData({});
+        toast.success("Registration successful")
+        navigate('/login')
+    }
+    } catch (error) {
+        console.log(error)
+    }
+  }
     return (
         <FormContainer>
             <h1>Sign Up</h1>
 
-            <Form onSubmit={''}>
+            <Form onSubmit={registerUser}>
                 <Form.Group controlId='first_name' className='my-3'>
                     <Form.Label>First Name</Form.Label>
                     <Form.Control
                         type='text'
                         placeholder='Enter first name'
-                        // value={name}
-                        // onChange={(e) => setName(e.target.value)}
+                        value={data.first_name}
+                        onChange={(e) => setData({...data, first_name : e.target.value})}
                     ></Form.Control>    
                 </Form.Group>
 
@@ -24,8 +59,8 @@ const RegisterScreen = () => {
                     <Form.Control
                         type='text'
                         placeholder='Enter last name'
-                        // value={name}
-                        // onChange={(e) => setName(e.target.value)}
+                        value={data.last_name}
+                        onChange={(e) => setData({...data, last_name : e.target.value})}
                     ></Form.Control>    
                 </Form.Group>
 
@@ -34,8 +69,8 @@ const RegisterScreen = () => {
                     <Form.Control
                         type='email'
                         placeholder='Enter email'
-                        // value={email}
-                        // onChange={(e) => setEmail(e.target.value)}
+                        value={data.email}
+                        onChange={(e) => setData({...data, email : e.target.value})}
                     ></Form.Control>    
                 </Form.Group>
 
@@ -44,8 +79,8 @@ const RegisterScreen = () => {
                     <Form.Control
                         type='password'
                         placeholder='Enter password'
-                        // value={password}
-                        // onChange={(e) => setPassword(e.target.value)}
+                        value={data.password}
+                        onChange={(e) => setData({...data, password : e.target.value})}
                     ></Form.Control>    
                 </Form.Group>
 
@@ -54,8 +89,8 @@ const RegisterScreen = () => {
                     <Form.Control
                         type='text'
                         placeholder='Enter phone number'
-                        // value={confirmPassword}
-                        // onChange={(e) => setConfirmPassword(e.target.value)}
+                        value={data.phone}
+                        onChange={(e) => setData({...data, phone : e.target.value})}
                     ></Form.Control>    
                 </Form.Group>
 
