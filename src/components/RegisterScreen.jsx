@@ -9,11 +9,21 @@ const RegisterScreen = () => {
             <h1>Sign Up</h1>
 
             <Form onSubmit={''}>
-                <Form.Group controlId='name' className='my-3'>
-                    <Form.Label>Name</Form.Label>
+                <Form.Group controlId='first_name' className='my-3'>
+                    <Form.Label>First Name</Form.Label>
                     <Form.Control
                         type='text'
-                        placeholder='Enter name'
+                        placeholder='Enter first name'
+                        // value={name}
+                        // onChange={(e) => setName(e.target.value)}
+                    ></Form.Control>    
+                </Form.Group>
+
+                <Form.Group controlId='last_name' className='my-3'>
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder='Enter last name'
                         // value={name}
                         // onChange={(e) => setName(e.target.value)}
                     ></Form.Control>    
@@ -39,11 +49,11 @@ const RegisterScreen = () => {
                     ></Form.Control>    
                 </Form.Group>
 
-                <Form.Group controlId='confirmPassword' className='my-3'>
-                    <Form.Label>Confirm Password</Form.Label>
+                <Form.Group controlId='phone' className='my-3'>
+                    <Form.Label>Phone</Form.Label>
                     <Form.Control
-                        type='password'
-                        placeholder='Confirm password'
+                        type='text'
+                        placeholder='Enter phone number'
                         // value={confirmPassword}
                         // onChange={(e) => setConfirmPassword(e.target.value)}
                     ></Form.Control>    
