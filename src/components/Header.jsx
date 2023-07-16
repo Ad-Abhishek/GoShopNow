@@ -34,14 +34,25 @@ const Header = () => {
                               </Nav.Link>  
                               
                               <NavDropdown title='' id='username'>
-                                      <NavDropdown.Item>Profile</NavDropdown.Item>
-                                  <NavDropdown.Item onClick={handleLogout}>
-                                      Logout
-                                  </NavDropdown.Item>
+                                <NavDropdown.Item> 
+                                {
+                                    localStorage.getItem('jwt') ? (
+                                    <Link to='/profile' className='product-link'>    
+                                        Profile
+                                    </Link>) : (
+                                    <Link to='/login' className='product-link'>    
+                                        Profile
+                                    </Link>
+                                )}
+                                </NavDropdown.Item>
+
+                                <NavDropdown.Item onClick={handleLogout} >
+                                    Logout
+                                </NavDropdown.Item>
                               </NavDropdown>
                               <Nav.Link>
                                 <Link to='/login' className='link'>
-                                  <FaUser/> Sign In </Link>
+                                  <FaUser/> Sign In </Link>  
                               </Nav.Link>
                       </Nav>
                   </Navbar.Collapse>
