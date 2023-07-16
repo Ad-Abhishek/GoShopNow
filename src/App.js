@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <Header />
-      <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
+      <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
       <Routes>
         <Route path="/" element={<Product />} />
         <Route path="/register" element={<RegisterScreen />} />
