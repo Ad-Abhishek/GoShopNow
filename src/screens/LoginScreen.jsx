@@ -29,7 +29,7 @@ const LoginScreen = () => {
                 toast.success("Login successful");
             }
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.detail);
         }
     }
     return (
