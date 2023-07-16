@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import LoginScreen from "./screens/LoginScreen";
@@ -11,6 +10,7 @@ import CartScreen from "./screens/CartScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/product/:id" element={<ProductScreen />} />
         <Route path="/cart" element={<CartScreen />} />
+        <Route path="/profile" element={<ProfileScreen />} />
 
         <Route path="/shipping" element={<ShippingScreen />} />
         <Route path="/payment" element={<PaymentScreen />} />
