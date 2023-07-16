@@ -36,7 +36,12 @@ const RegisterScreen = () => {
         navigate('/login')
     }
     } catch (error) {
-        console.log(error)
+        const { email, password } = error.response.data;
+        if (email) {
+            toast.error(email[0]);
+        } else {
+            toast.error(`Password- ${password[0]}` );
+        }
     }
   }
     return (
