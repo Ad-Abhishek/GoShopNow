@@ -1,10 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {  Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
 import { FaShoppingCart, FaUser} from 'react-icons/fa';
 // import logo from '../asset/logo.png'
 
 const Header = () => {
+    const navigate = useNavigate();
+    const handleLogout = (e) => {
+        try {
+            localStorage.removeItem('jwt');
+            navigate('/login');
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
       <header>
           <Navbar bg='dark' variant='dark' expand='md' collapseOnSelect>
@@ -26,7 +35,7 @@ const Header = () => {
                               
                               <NavDropdown title='' id='username'>
                                       <NavDropdown.Item>Profile</NavDropdown.Item>
-                                  <NavDropdown.Item onClick={''}>
+                                  <NavDropdown.Item onClick={handleLogout}>
                                       Logout
                                   </NavDropdown.Item>
                               </NavDropdown>
