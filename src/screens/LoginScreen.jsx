@@ -28,6 +28,7 @@ const LoginScreen = () => {
                 setData({});
                 toast.success("Login successful");
                 localStorage.setItem('jwt', data.access);
+                navigate('/');
             }
         } catch (error) {
             toast.error(error.response.data.detail);
