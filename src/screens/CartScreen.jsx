@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux'; 
 import {
     Row, 
     Col,
@@ -11,25 +10,16 @@ import {
 } from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
 import Message from '../components/Message';
-// import { addToCart, removeFromCart } from '../slices/cartSlice';
 
 const CartScreen = () => {
     const navigate = useNavigate();
-    // const dispatch = useDispatch();
-
-    // const cart = useSelector((state) => state.cart);
-    // const { cartItems } = cart;
-
-    // const addToCartHandler = async(product, qty) => {
-    //     dispatch(addToCart({...product, qty}))
-    // };
-
-    // const removeFromCartHandler = async(id) => {
-    //     dispatch(removeFromCart(id))
-    // };
 
     const checkoutHandler = () => {
-        navigate('/login?redirect=/shipping');
+        if (localStorage.getItem('jwt')) {
+            navigate('/shipping');
+        } else {
+            navigate('/login');
+        }
     }
 
     return (

@@ -20,7 +20,11 @@ const ProductScreen = () => {
     const navigate = useNavigate();
 
     const addToCartHandler = () => {
-        navigate('/cart');
+        if (localStorage.getItem('jwt')) {
+            navigate('/cart');
+        } else {
+            navigate('/login');
+        }
     }
   return (
     <>
