@@ -52,8 +52,16 @@ const ProfileScreen = () => {
                 toast.success("Update successful");
             }
         } catch (error) {
-            console.log(error);
-        }
+            const { email, password, non_field_errors } = error.response.data
+            if (email) {
+                toast.error(email[0])
+            } else if(password) {
+                toast.error(password[0])
+            } else
+            {
+            toast.error(non_field_errors[0])
+            }
+          }
     }
 
   return (
