@@ -1,11 +1,39 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import {  Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
 import { FaShoppingCart, FaUser} from 'react-icons/fa';
 // import logo from '../asset/logo.png'
 
 const Header = () => {
     const navigate = useNavigate();
+
+    const [data, setData] = useState({
+        first_name: "",
+        last_name: ""
+    });
+
+    const url = 'https://goshopnow.onrender.com/api/user/profile/';
+
+    const token = localStorage.getItem('jwt');
+
+    const headers = {
+        'Authorization' : `Bearer ${token}`
+    }
+
+    useEffect(() => {
+        axios
+          .get(url, {headers}) 
+          .then((res) => {
+            setData(() => {
+              return res.data;
+            });
+          }) 
+          .catch((err) => {
+            console.log(err);
+          }); 
+    }, [url]);
+
     const handleLogout = (e) => {
         try {
             localStorage.removeItem('jwt');
@@ -51,8 +79,15 @@ const Header = () => {
                                 </NavDropdown.Item>
                               </NavDropdown>
                               <Nav.Link>
-                                <Link to='/login' className='link'>
-                                  <FaUser/> Sign In </Link>  
+                                {
+                                    localStorage.getItem('jwt') ? (    
+                                        <Link to='/profile' className='link'>
+                                  <FaUser/> {data.first_name} {data.last_name} </Link>
+                                    ) : (
+                                        <Link to='/login' className='link'>
+                                  <FaUser/> Sign In </Link>
+                                    )
+                                } 
                               </Nav.Link>
                       </Nav>
                   </Navbar.Collapse>
