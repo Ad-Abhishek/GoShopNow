@@ -36,11 +36,14 @@ const RegisterScreen = () => {
         navigate('/login')
     }
     } catch (error) {
-        const { email, password } = error.response.data;
+        const { email, password, non_field_errors } = error.response.data
         if (email) {
-            toast.error(email[0]);
-        } else {
-            toast.error(`Password- ${password[0]}` );
+            toast.error(email[0])
+        } else if(password) {
+            toast.error(password[0])
+        } else
+            {
+        toast.error(non_field_errors[0])
         }
     }
   }
