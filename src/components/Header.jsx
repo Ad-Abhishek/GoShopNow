@@ -61,6 +61,17 @@ const Header = () => {
                                 </Link>  
                               </Nav.Link>  
                               
+                              <Nav.Link>
+                                {
+                                    localStorage.getItem('jwt') ? (    
+                                        <Link to='/profile' className='link'>
+                                  <FaUser/> {data.first_name} {data.last_name} </Link>
+                                    ) : (
+                                        <Link to='/login' className='link'>
+                                  <FaUser/> Sign In </Link>
+                                    )
+                                } 
+                              </Nav.Link>
                               <NavDropdown title='' id='username'>
                                 <NavDropdown.Item> 
                                 {
@@ -78,17 +89,6 @@ const Header = () => {
                                     Logout
                                 </NavDropdown.Item>
                               </NavDropdown>
-                              <Nav.Link>
-                                {
-                                    localStorage.getItem('jwt') ? (    
-                                        <Link to='/profile' className='link'>
-                                  <FaUser/> {data.first_name} {data.last_name} </Link>
-                                    ) : (
-                                        <Link to='/login' className='link'>
-                                  <FaUser/> Sign In </Link>
-                                    )
-                                } 
-                              </Nav.Link>
                       </Nav>
                   </Navbar.Collapse>
               </Container>
