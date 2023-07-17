@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from 'react-router-dom';
 import { Card, Form, Button, Row, Col } from 'react-bootstrap';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
@@ -65,6 +66,10 @@ const ProfileScreen = () => {
     }
 
   return (
+    <>
+    <Link className='btn btn-light my-3' to='/'>
+                Go Back
+    </Link>
     <Row>
       <Col md={3}>
         <Form onSubmit={updateUser} style={{ width: "24rem", margin: "50px" }}>
@@ -151,6 +156,7 @@ const ProfileScreen = () => {
     </Card>
       </Col>
     </Row>
+  </>  
   );
 };
 
