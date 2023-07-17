@@ -8,7 +8,7 @@ const ProductCard = ({ item }) => {
       <Link to={`/product/${item.p_id}`}>
         <Card.Img
           variant="top"
-          src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&w=400"
+          src='https://dovecomputers.co.ke/wp-content/uploads/2022/03/samsung-galaxy-a23-blue-1.jpg'
         />
       </Link>  
     
