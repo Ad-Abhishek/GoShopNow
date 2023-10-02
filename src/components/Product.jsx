@@ -3,7 +3,7 @@ import axios from "axios";
 import CardList from "./CardList";
 
 export const Product = () => {
-  const serverUrl = "https://goshopnow.onrender.com/api/product/product/"
+  const serverUrl = "http://127.0.0.1:8000/api/product/product/"
 
   const [product, setProduct] = useState([]);
 

@@ -18,7 +18,7 @@ const LoginScreen = () => {
         const { email, password } = data;
 
         try {
-            const { data } = await axios.post('https://goshopnow.onrender.com/api/user/token/', {
+            const { data } = await axios.post('http://127.0.0.1:8000/api/user/token/', {
                 email,
                 password
             })

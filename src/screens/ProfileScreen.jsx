@@ -14,7 +14,7 @@ const ProfileScreen = () => {
         is_active: ""
     });
 
-    const url = 'https://goshopnow.onrender.com/api/user/profile/';
+    const url = 'http://127.0.0.1:8000/api/user/profile/';
 
     const token = localStorage.getItem('jwt');
 
@@ -40,7 +40,7 @@ const ProfileScreen = () => {
         const {first_name, last_name, email, password, phone} = data;
 
         try {
-            const { data } = await axios.patch('https://goshopnow.onrender.com/api/user/profile/', {
+            const { data } = await axios.patch('http://127.0.0.1:8000/api/user/profile/', {
                 first_name,
                 last_name,
                 email,

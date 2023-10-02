@@ -15,7 +15,8 @@ import Rating from "../components/Rating";
 
 const ProductScreen = () => {
     const { id: productId } = useParams();
-    const serverUrl = `https://goshopnow.onrender.com/api/product/product/${productId}/`;
+    // const serverUrl = `https://goshopnow.onrender.com/api/product/product/${productId}/`;
+    const serverUrl = `http://127.0.0.1:8000/api/product/product/${productId}/`;
     const [product, setProduct] = useState({});
 
     useEffect(() => {
@@ -88,7 +89,8 @@ const ProductScreen = () => {
                                             <Form.Control
                                                 as='input'
                                                 placeholder={product.stock}
-                                            >                       
+                                                onChange={(e) => setProduct({...product, qty : e.target.value})}
+                                            >      
                                             </Form.Control>
                                         </Col>
                                     </Row>
@@ -101,7 +103,7 @@ const ProductScreen = () => {
                                     disabled={product.stock === 0}
                                     onClick={addToCartHandler}
                                 >
-                                    Add To Cart
+                                    Add To Cart 
                                 </Button>    
                             </ListGroup.Item>
                         </ListGroup>

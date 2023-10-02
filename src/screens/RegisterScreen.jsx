@@ -21,7 +21,7 @@ const RegisterScreen = () => {
     const { first_name, last_name, email, password, phone } = data;
 
     try {
-        const { data } = await axios.post('https://goshopnow.onrender.com/api/user/create/', {
+        const { data } = await axios.post('http://127.0.0.1:8000/api/user/create/', {
             first_name,
             last_name,
             email,
@@ -31,6 +31,7 @@ const RegisterScreen = () => {
     if (data.error) {
         toast.error("Error! Try again")
     } else {
+        console.log("**" + data)
         setData({});
         toast.success("Registration successful")
         navigate('/login')

@@ -13,7 +13,7 @@ const Header = () => {
         last_name: ""
     });
 
-    const url = 'https://goshopnow.onrender.com/api/user/profile/';
+    const url = 'http://127.0.0.1:8000/api/user/profile/';
 
     const token = localStorage.getItem('jwt');
 
