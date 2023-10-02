@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from 'react-hot-toast';
+
 import {
     Form,
     Row,
@@ -15,8 +17,11 @@ import Rating from "../components/Rating";
 
 const ProductScreen = () => {
     const { id: productId } = useParams();
-    // const serverUrl = `https://goshopnow.onrender.com/api/product/product/${productId}/`;
+
+    const [ val, setVal ] = useState(0); 
+
     const serverUrl = `http://127.0.0.1:8000/api/product/product/${productId}/`;
+    const add_to_cart_URL =`http://127.0.0.1:8000/api/cart/cart/`; 
     const [product, setProduct] = useState({});
 
     useEffect(() => {
@@ -33,12 +38,44 @@ const ProductScreen = () => {
     }, [serverUrl]);
     const navigate = useNavigate();
 
-    const addToCartHandler = () => {
-        if (localStorage.getItem('jwt')) {
-            navigate('/cart');
-        } else {
+    const addToCartHandler = async () => {
+        const token = localStorage.getItem('jwt');
+        
+        const headers = {
+            'Authorization' : `Bearer ${token}`
+        }
+
+        const body = {
+            p_id : productId,
+            quantity: val
+        }
+
+        if(token && (body.quantity < 1 )){
+            toast.error("Min 1 qty required");
+        }
+        if ( token &&  (body.quantity >= 1 )) {
+                axios
+                    .post(add_to_cart_URL, 
+                        body
+                    , {headers})
+                    .then((res) => {
+                        toast.success("Product added to cart successfully")
+                        navigate('/cart')
+                    })
+                    .catch((err) => {
+                        toast.error(err.response.data.error);
+                    })
+        }
+        if (!token){
+            toast.error("Redirected to Login!");
             navigate('/login');
         }
+    }
+
+    const updateQuantity = (e) => {
+        setVal( () => {
+            return e.target.value   
+        })    
     }
   return (
     <>
@@ -77,7 +114,7 @@ const ProductScreen = () => {
                             <Row>
                                     <Col>Status:</Col>
                                     <Col>
-                                        <strong>{product.stock > 0 ? 'In Stock' : 'Out Of Stock'}</strong>
+                                        <strong>{product.stock > 0 ? `In Stock - [${product.stock}]` : 'Out Of Stock'}</strong>
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
@@ -87,9 +124,10 @@ const ProductScreen = () => {
                                         <Col>Qty</Col>
                                         <Col>
                                             <Form.Control
+                                                value={ val }
                                                 as='input'
                                                 placeholder={product.stock}
-                                                onChange={(e) => setProduct({...product, qty : e.target.value})}
+                                                onChange={(e) => updateQuantity(e)}
                                             >      
                                             </Form.Control>
                                         </Col>
