@@ -19,11 +19,11 @@ export const ShippingScreen = () => {
             <h1>Shipping</h1>
 
             <Form onSubmit={submitHandler}>
-                <Form.Group controlId="address" className="my-2">
-                    <Form.Label>Address</Form.Label>
+                <Form.Group controlId="province" className="my-2">
+                    <Form.Label>Province</Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder="Enter address"
+                        placeholder="Enter province"
                     ></Form.Control>
                 </Form.Group>
 
@@ -35,19 +35,11 @@ export const ShippingScreen = () => {
                     ></Form.Control>
                 </Form.Group>
 
-                <Form.Group controlId="postalCode" className="my-2">
-                    <Form.Label>Postal Code</Form.Label>
+                <Form.Group controlId="area" className="my-2">
+                    <Form.Label>Area</Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder="Enter postal code"
-                    ></Form.Control>
-                </Form.Group>
-
-                <Form.Group controlId="country" className="my-2">
-                    <Form.Label>Country</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter country"
+                        placeholder="Enter area"
                     ></Form.Control>
                 </Form.Group>
                 
