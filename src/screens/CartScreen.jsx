@@ -12,6 +12,7 @@ import {
 import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
 import Message from '../components/Message';
+import toast from 'react-hot-toast';
 
 const CartScreen = () => {
 
@@ -49,6 +50,24 @@ const CartScreen = () => {
         }
     }
 
+    const handleDelete = (e, cartId) => {
+        
+        const url = `http://127.0.0.1:8000/api/cart/cart/${cartId}`;
+
+        axios
+        .delete(url, { headers })
+        .then((response) => {
+          toast.success("Product removed from cart successfully!")
+        })
+        .catch((error) => {
+          toast.error("Error removing the prouct from cart!")
+        });
+
+        // e.preventDefault();
+
+    };
+    
+
     return (
         <Row>   
             <Col md={7}>
@@ -59,7 +78,7 @@ const CartScreen = () => {
                 
                 { cartItems.length === 0 ? (
                     <Message>
-                        Your cart is empty <Link to='/'>Go Back</Link>
+                        Your cart is empty 
                     </Message> 
                 ) : (
                     <ListGroup variant='flush'>
@@ -73,10 +92,11 @@ const CartScreen = () => {
                             </Col>
 
                             <Col md={2}>
-                                Quantity
+                                Price
                             </Col>
 
                             <Col md={2}>
+                                Quantity
                             </Col>
                         </Row>
                         { cartItems.map((item) => (
@@ -91,20 +111,18 @@ const CartScreen = () => {
                                     </Col>
 
                                     <Col md={2}>
-                                        {item.quantity} 
+                                        item.price 
                                     </Col>
 
                                     <Col md={2}>
                                         <Form.Control
-                                            as='select'
-                                        >
-                                            <option >1</option>
-                                            <option >2</option>
-                                            <option >3</option>
-                                        </Form.Control>
+                                            type="text"
+                                            placeholder={item.quantity}
+                                            readOnly
+                                        />
                                     </Col>
                                     <Col md={2}>
-                                        <Button type='button' variant='light' onClick={''}>
+                                        <Button type='button' variant='light' onClick={(e) => handleDelete(e, item.id)}>
                                             <FaTrash />
                                         </Button>
                                     </Col>
