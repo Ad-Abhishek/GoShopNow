@@ -84,7 +84,7 @@ const ProductScreen = () => {
             </Link>
                 <Row>
                 <Col md={3}>
-                    <Image src='https://dovecomputers.co.ke/wp-content/uploads/2022/03/samsung-galaxy-a23-blue-1.jpg' alt={product.name} fluid />
+                    <Image src='https://images.unsplash.com/photo-1676121228785-f1dcd462025f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80' fluid/>
                 </Col>
                 <Col md={4}>
                     <ListGroup variant="flush">
