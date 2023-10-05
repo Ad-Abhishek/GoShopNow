@@ -30,3 +30,14 @@ body {
     text-decoration: none;
     color: black;
 }
+
+
+.card-style {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+/* .product-style{
+  height: 20vw;
+} */
