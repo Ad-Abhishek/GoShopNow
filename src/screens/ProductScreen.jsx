@@ -22,6 +22,7 @@ const ProductScreen = () => {
 
     const serverUrl = `http://127.0.0.1:8000/api/product/product/${productId}/`;
     const add_to_cart_URL =`http://127.0.0.1:8000/api/cart/cart/`; 
+    let origin = 'http://127.0.0.1:8000';
     const [product, setProduct] = useState({});
 
     useEffect(() => {
@@ -79,12 +80,17 @@ const ProductScreen = () => {
     }
   return (
     <>
+        {/* {Object.keys(product).length > 0 && JSON.stringify(product.image_url[0].image_url)} */}
+
             <Link className='btn btn-light my-3' to='/'>
                 Go Back
             </Link>
                 <Row>
                 <Col md={3}>
-                    <Image src='https://images.unsplash.com/photo-1676121228785-f1dcd462025f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80' fluid/>
+                    
+                    <Image fluid
+                        src={(Object.keys(product).length > 0) ? `${origin}/${product.image_url[0].image_url}`:``}
+                    />
                 </Col>
                 <Col md={4}>
                     <ListGroup variant="flush">

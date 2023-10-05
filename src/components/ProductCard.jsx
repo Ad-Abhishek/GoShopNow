@@ -8,8 +8,8 @@ const ProductCard = ({ item }) => {
       <Link to={`/product/${item.p_id}`}>
         <Card.Img
           variant="top"
-          // src='https://dovecomputers.co.ke/wp-content/uploads/2022/03/samsung-galaxy-a23-blue-1.jpg'
-          src='https://images.unsplash.com/photo-1676121228785-f1dcd462025f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+          className='card-style'
+          src={`http://127.0.0.1:8000/${item.image_url}`}
         />
       </Link>  
     

@@ -16,18 +16,15 @@ import toast from 'react-hot-toast';
 
 const CartScreen = () => {
 
-    // const productId = '4';
     const [ cartItems, setCartItems ] = useState([]);
-    // const [ productName, setProductName ] = useState('product_name');
     const [ itemNames, setItemNames ] = useState([]);
     const [ itemPrices, setItemPrices ] = useState([]);
+    const [ itemImages, setItemImages ] = useState([]);
 
-
+    let origin = 'http://127.0.0.1:8000'
 
     const get_user_cart_URL = `http://127.0.0.1:8000/api/cart/cart/`;
     const get_product_by_id = `http://127.0.0.1:8000/api/product/product`;
-
-    
 
     const token = localStorage.getItem('jwt');
 
@@ -45,21 +42,24 @@ const CartScreen = () => {
         async function fetchProductNamesAndPrices(){
             const itemNames = [];
             const itemPrices = [];
+            const itemImages = [];
             for (const itemId of cartItems) {
                 try {
                     const response = await axios
                         .get(`${get_product_by_id}/${itemId.p_id}`, {headers})
                     const itemName = response.data.name   
-                    const itemPrice = response.data.price 
+                    const itemPrice = response.data.price
+                    const itemImage = response.data.image_url 
                     itemNames.push(itemName)  
-                    itemPrices.push(itemPrice)  
+                    itemPrices.push(itemPrice)
+                    itemImages.push(itemImage)  
                 } catch (error) {
                     console.log('Error fetching product name!')
                 }
             }
             setItemNames(itemNames)
             setItemPrices(itemPrices)
-
+            setItemImages(itemImages)
         }
         fetchProductNamesAndPrices()
     }, [cartItems]);
@@ -130,7 +130,7 @@ const CartScreen = () => {
 
 
     return (
-        <>
+        <>  
         <Row>   
             <Col md={7}>
                 <Link className='btn btn-light my-3' to='/'>
@@ -168,7 +168,7 @@ const CartScreen = () => {
                             <ListGroup.Item key={item.p_id}>
                                 <Row>
                                     <Col md={2}>
-                                        <Image src='https://images.unsplash.com/photo-1676121228785-f1dcd462025f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80' alt=' item.name ' fluid rounded />
+                                        <Image fluid src={(itemImages.length > 0)? `${origin}/${itemImages[idx][0].image_url}`: ``} alt={itemNames[idx]}  />
                                     </Col>
                                                                                                           
                                     <Col md={3}>
