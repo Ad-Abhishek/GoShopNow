@@ -168,7 +168,7 @@ const CartScreen = () => {
                             <ListGroup.Item key={item.p_id}>
                                 <Row>
                                     <Col md={2}>
-                                        <Image fluid src={(itemImages.length > 0)? `${origin}/${itemImages[idx][0].image_url}`: ``} alt={itemNames[idx]}  />
+                                        <Image fluid height='20%' width='50%' src={(itemImages.length > 0)? `${origin}/${itemImages[idx][0].image_url}`: ``} alt={itemNames[idx]}  />
                                     </Col>
                                                                                                           
                                     <Col md={3}>

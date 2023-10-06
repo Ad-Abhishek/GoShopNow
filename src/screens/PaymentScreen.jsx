@@ -3,6 +3,7 @@ import { Form, Button, Col, FormGroup } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 export const PaymentScreen = () => {
 
@@ -44,7 +45,7 @@ export const PaymentScreen = () => {
                 payment_url = res.data.payment_url
             })
             .catch((err) => {
-                console.log(err);
+                toast.error(err.response.data.detail);
             })
 
         if ( payment_url ){
