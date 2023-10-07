@@ -12,6 +12,7 @@ import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import PaymentHistory from "./screens/PaymentHistory";
+import GameScreen from "./screens/GameScreen";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/payment" element={<PaymentScreen />} />
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
         <Route path="payHistory" element={<PaymentHistory />} />
+        <Route path="/game" element={<GameScreen />} />
       </Routes>
 
       <Footer />

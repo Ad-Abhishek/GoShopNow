@@ -49,6 +49,15 @@ const Header = () => {
         console.log(error);
     }
     }
+
+    const handleGame = () => {
+      try {
+        navigate('/game');
+    } catch (error) {
+        console.log(error);
+    }
+    }
+
     return (
       <header>
           <Navbar bg='dark' variant='dark' expand='md' collapseOnSelect>
@@ -94,6 +103,10 @@ const Header = () => {
 
                                 <NavDropdown.Item onClick={handleHistory} >
                                     Payment History
+                                </NavDropdown.Item>
+
+                                <NavDropdown.Item onClick={handleGame} >
+                                    Game
                                 </NavDropdown.Item>
 
 
