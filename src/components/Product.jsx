@@ -15,11 +15,24 @@ export const Product = () => {
     rating: '',
     category: ''    
   });
+  const [ previousPage, setPreviousPage ] = useState(null);
+  const [ nextPage, setNextPage ] = useState(null);
 
   useEffect(() => {
     axios
       .get(serverUrl) 
       .then((res) => {
+        if ( res.data.next ) {
+          setNextPage(() => {
+            return res.data.next;
+          })
+        }
+        if ( res.data.previous ) {
+          setPreviousPage(() => {
+            return res.data.previous;
+          })
+        }
+
         setProduct(() => {
           return res.data.results;
         });
@@ -29,6 +42,7 @@ export const Product = () => {
       }); 
 
       getAllCategories();
+      
   }, [serverUrl]);
 
   const token = localStorage.getItem('jwt');
@@ -161,10 +175,64 @@ export const Product = () => {
         console.log(err)
       })
   }
+
+  const handleNext = () => {
+    axios
+      .get(nextPage, { headers })
+      .then((res) => {
+
+        console.log("next button click:"+        JSON.stringify(res.data))
+
+        if (res.data.previous ) {
+          setPreviousPage(() => {
+            return res.data.previous
+          })
+        }
+
+          setNextPage(() => {
+            return res.data.next
+          })
+
+        if ( res.data.count !== 0) {
+          setProduct(() => {
+            return res.data.results
+          })
+        }
+        })
+      
+      .catch((err) => {
+        console.log(err)
+      })
+  }
  
+  const handlePrevious = () => {
+    axios
+      .get(previousPage, { headers })
+      .then((res) => {
+        console.log("previous button click:"+        JSON.stringify(res.data))
+
+          setNextPage(() => {
+            return res.data.next
+          })
+
+          setPreviousPage(() => {
+            return res.data.previous
+          })
+
+        if ( res.data.count !== 0) {
+          setProduct(() => {
+            return res.data.results
+          })
+        }
+        })
+      
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   return (
     <>
-    
       <div>
       <div style={{
                     height: '10vh',
@@ -187,7 +255,6 @@ export const Product = () => {
                    {category.map((cat, idx) => (
                     <option key={idx}  value={cat.category.toLowerCase()}>{cat.category}</option>
                    ))}
-                 
                  </select>
    
                  <select class="form-select m-2" aria-label="Default select example" onChange={(e) =>  handlePriceChange(e)}>
@@ -222,10 +289,10 @@ export const Product = () => {
                     height: '20vh'
                   }}
         >
-        <Button className="pull-right me-2">
+        <Button className="pull-right me-2" onClick={(e) => handlePrevious(e)}>
           <i class="bi bi-arrow-bar-left"></i>
         </Button>
-        <Button className="pull-right me-2">
+        <Button className="pull-right me-2" onClick={(e) => handleNext(e)}>
           <i class="bi bi-arrow-bar-right"></i>
         </Button>
       </div>
