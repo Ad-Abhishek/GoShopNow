@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {  Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
 import { FaShoppingCart, FaUser} from 'react-icons/fa';
-// import logo from '../asset/logo.png'
 
 const Header = () => {
     const navigate = useNavigate();
@@ -42,12 +41,19 @@ const Header = () => {
             console.log(error);
         }
     }
+
+    const handleHistory = () => {
+      try {
+        navigate('/payHistory');
+    } catch (error) {
+        console.log(error);
+    }
+    }
     return (
       <header>
           <Navbar bg='dark' variant='dark' expand='md' collapseOnSelect>
               <Container>
                   <Navbar.Brand>
-                      {/* <img src={''} className='logo' alt='goshopnow' /> */}
                       <Link to='/' className='link'>
                       GoShopNow
                       </Link>
@@ -84,6 +90,12 @@ const Header = () => {
                                     </Link>
                                 )}
                                 </NavDropdown.Item>
+
+
+                                <NavDropdown.Item onClick={handleHistory} >
+                                    Payment History
+                                </NavDropdown.Item>
+
 
                                 <NavDropdown.Item onClick={handleLogout} >
                                     Logout
